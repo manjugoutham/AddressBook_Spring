@@ -14,6 +14,7 @@ import javax.validation.constraints.Pattern;
 public class AddressBookDTO {
 
     @NotNull
+    @Pattern(regexp = "^[A-Z]{1}[a-zA-Z\\s]{2,}$",message = "Person name is Invalid")
     private String name;
     private String emailId;
     private String phoneNumber;

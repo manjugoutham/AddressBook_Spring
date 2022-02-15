@@ -14,7 +14,7 @@ import javax.persistence.Id;
 @AllArgsConstructor
 public class AddressBookData {
     @Id
-    private long personId;
+    private int personId;
     private String name;
     private String emailId;
     private String phoneNumber;
@@ -24,7 +24,6 @@ public class AddressBookData {
     private String zipCode;
 
     public AddressBookData(long personId, AddressBookDTO addressBookDTO){
-        this.personId=personId;
         this.name=addressBookDTO.getName();
         this.emailId=addressBookDTO.getEmailId();
         this.phoneNumber=addressBookDTO.getPhoneNumber();

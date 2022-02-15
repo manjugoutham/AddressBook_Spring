@@ -3,7 +3,6 @@ package com.bridgelabz.addressbook.controller;
 import com.bridgelabz.addressbook.dto.AddressBookDTO;
 import com.bridgelabz.addressbook.dto.ResponseDTO;
 import com.bridgelabz.addressbook.model.AddressBookData;
-import com.bridgelabz.addressbook.services.AddressBookServices;
 import com.bridgelabz.addressbook.services.IAddressBookServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
