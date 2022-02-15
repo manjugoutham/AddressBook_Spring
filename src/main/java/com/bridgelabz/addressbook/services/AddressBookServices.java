@@ -59,6 +59,11 @@ public class AddressBookServices implements IAddressBookServices {
         addressBookReposiory.delete(addressBookData);
     }
 
+    @Override
+    public Integer findAddressBookDataByCity(String city) {
+        return addressBookReposiory.findAddressBookDataByCity(city);
+    }
+
     //ModelMapping..convert Entity to DTO
     private AddressBookDTO mapToDTO(AddressBookData addressBookData){
         AddressBookDTO addressBookDTO = mapper.map(addressBookData,AddressBookDTO.class);

@@ -21,6 +21,7 @@ public class AddressBookData {
     private int personId;
     private String name;
     private String emailId;
+    @Column(unique = true)
     private String phoneNumber;
     private String address;
     private String city;
