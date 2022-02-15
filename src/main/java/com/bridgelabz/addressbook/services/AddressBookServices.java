@@ -5,6 +5,7 @@ import com.bridgelabz.addressbook.exceptions.AddressBookException;
 import com.bridgelabz.addressbook.model.AddressBookData;
 import com.bridgelabz.addressbook.repository.AddressBookReposiory;
 import lombok.extern.slf4j.Slf4j;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,18 +18,17 @@ public class AddressBookServices implements IAddressBookServices {
     @Autowired
     private AddressBookReposiory addressBookReposiory;
 
-    //private List<AddressBookData> addressBoolList = new ArrayList<>();
+    private ModelMapper mapper;
 
+    private List<AddressBookData> addressBoolList = new ArrayList<>();
+    public AddressBookServices(AddressBookReposiory addressBookReposiory,ModelMapper mapper){
+        this.addressBookReposiory = addressBookReposiory;
+        this.mapper = mapper;
+    }
     @Override
     public List<AddressBookData> getAddressBookData() {
-
         return addressBookReposiory.findAll();
     }
-//    public AddressBookData getAddressBookDataById(int personId) {
-//        AddressBookData addressBookData = null;
-//        addressBookData = new AddressBookData(1,new AddressBookDTO("Goutham","gouthu@gmail.com","8105457612","MG Road","Banglore","Karnataka","560050"));
-//        return addressBookData;
-//    }
     @Override
     public AddressBookData getAddressBookDataById(int personId) {
         return addressBookReposiory
@@ -49,15 +49,7 @@ public class AddressBookServices implements IAddressBookServices {
     @Override
     public AddressBookData updateAddressBookData(int personId, AddressBookDTO addressBookDTO) {
         AddressBookData addressData = this.getAddressBookDataById(personId);
-//        addressData.setName(addressBookDTO.getName());
-//        addressData.setEmailId(addressBookDTO.getEmailId());
-//        addressData.setPhoneNumber(addressBookDTO.getPhoneNumber());
-//        addressData.setAddress(addressBookDTO.getAddress());
-//        addressData.setCity(addressBookDTO.getCity());
-//        addressData.setState(addressBookDTO.getState());
-//        addressData.setZipCode(addressBookDTO.getZipCode());
-//        addressBoolList.set(personId-1,addressData);
-        addressData.updateAddressBookData(addressBookDTO);
+        mapper.map(addressBookDTO,addressData);
         return addressBookReposiory.save(addressData);
     }
 
@@ -66,5 +58,18 @@ public class AddressBookServices implements IAddressBookServices {
         AddressBookData addressBookData = this.getAddressBookDataById(personId);
         addressBookReposiory.delete(addressBookData);
     }
+
+    //ModelMapping..convert Entity to DTO
+    private AddressBookDTO mapToDTO(AddressBookData addressBookData){
+        AddressBookDTO addressBookDTO = mapper.map(addressBookData,AddressBookDTO.class);
+        return addressBookDTO;
+    }
+
+    //convert DTO to entity
+    private AddressBookData mapToEntity(AddressBookDTO addressBookDTO){
+        AddressBookData addressBookData = mapper.map(addressBookDTO,AddressBookData.class);
+        return addressBookData;
+    }
+
 }
 

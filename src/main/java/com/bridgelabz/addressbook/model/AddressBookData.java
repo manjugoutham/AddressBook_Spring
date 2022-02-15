@@ -18,7 +18,7 @@ public class AddressBookData {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "person_id")
 
-    private long personId;
+    private int personId;
     private String name;
     private String emailId;
     private String phoneNumber;
@@ -32,7 +32,7 @@ public class AddressBookData {
     }
 
     public void updateAddressBookData(AddressBookDTO addressBookDTO){
-        this.personId=personId;
+       // this.personId=personId;
         this.name=addressBookDTO.getName();
         this.emailId=addressBookDTO.getEmailId();
         this.phoneNumber=addressBookDTO.getPhoneNumber();
