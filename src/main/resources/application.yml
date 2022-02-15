@@ -1,0 +1,11 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    url: jdbc:mysql://${MYSQL_HOST:localhost}:3306/addressbookdb
+    password: Tham12@2
+  jpa:
+    hibernate:
+      ddl-auto: update
+
+
