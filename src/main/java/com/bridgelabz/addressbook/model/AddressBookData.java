@@ -5,16 +5,20 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
+@Table(name = "Addressbook_datadb")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class AddressBookData {
+
     @Id
-    private int personId;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "person_id")
+
+    private long personId;
     private String name;
     private String emailId;
     private String phoneNumber;
@@ -23,7 +27,12 @@ public class AddressBookData {
     private String state;
     private String zipCode;
 
-    public AddressBookData(long personId, AddressBookDTO addressBookDTO){
+    public AddressBookData(AddressBookDTO addressBookDTO) {
+        this.updateAddressBookData(addressBookDTO);
+    }
+
+    public void updateAddressBookData(AddressBookDTO addressBookDTO){
+        this.personId=personId;
         this.name=addressBookDTO.getName();
         this.emailId=addressBookDTO.getEmailId();
         this.phoneNumber=addressBookDTO.getPhoneNumber();

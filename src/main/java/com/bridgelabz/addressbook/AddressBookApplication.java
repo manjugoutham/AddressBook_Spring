@@ -9,6 +9,9 @@ import org.springframework.context.ApplicationContext;
 @Slf4j
 public class AddressBookApplication {
 
+//	public static void main(String[] args) {
+//		SpringApplication.run(AddressBookApplication.class, args);
+//	}
 	public static void main(String[] args) {
 		ApplicationContext context = SpringApplication.run(AddressBookApplication.class, args);
 		log.info("Employee payroll App Started in {}", context.getEnvironment().getProperty("environment"));

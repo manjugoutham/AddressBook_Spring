@@ -3,6 +3,7 @@ package com.bridgelabz.addressbook.controller;
 import com.bridgelabz.addressbook.dto.AddressBookDTO;
 import com.bridgelabz.addressbook.dto.ResponseDTO;
 import com.bridgelabz.addressbook.model.AddressBookData;
+import com.bridgelabz.addressbook.services.AddressBookServices;
 import com.bridgelabz.addressbook.services.IAddressBookServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -22,8 +23,10 @@ public class AddressBookController {
     @GetMapping(value = {"", "/", "/get"})
     public ResponseEntity<ResponseDTO> getAddressBookData()
     {
-        List addressBookDataList = addressBookServices.getAddressBookData();
-        ResponseDTO respDTO = new ResponseDTO("Get Call Successfull", addressBookDataList);
+        //List addressBookDataList = addressBookServices.getAddressBookData();
+        List<AddressBookData> addreslist = null;
+        addreslist = addressBookServices.getAddressBookData();
+        ResponseDTO respDTO = new ResponseDTO("Get Call Successfull", addreslist);
         return new ResponseEntity<ResponseDTO>(respDTO, HttpStatus.OK);
     }
 
@@ -57,7 +60,7 @@ public class AddressBookController {
     public ResponseEntity<ResponseDTO> deleteAddressBookData(@PathVariable("personId") int personId)
     {
         addressBookServices.deleteAddressBookData(personId);
-        ResponseDTO respDTO = new ResponseDTO("deleted adressBook data with personId :", personId);
+        ResponseDTO respDTO = new ResponseDTO("deleted sucessful ", "Deleted Id" + personId);
         return new ResponseEntity<ResponseDTO> (respDTO, HttpStatus.OK);
     }
 
